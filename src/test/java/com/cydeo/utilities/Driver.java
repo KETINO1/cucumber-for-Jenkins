@@ -28,9 +28,12 @@ public class Driver {
     public static WebDriver getDriver(){
 
         if(driverPool.get() == null){  // if driver/browser was never opened
-
-        String browserType = ConfigurationReader.getProperty("browser");
-
+            String browserType="";
+            if(System.getProperty("BROWSER")==null){
+                browserType = ConfigurationReader.getProperty("browser");
+            }else {
+                browserType=System.getProperty("BROWSER");
+            }
         /*
         Depending on the browserType our switch statement will determine
         to open specific type of browser/driver
